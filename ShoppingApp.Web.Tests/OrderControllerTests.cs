@@ -1,8 +1,7 @@
+using DataAccessPatterns.RepositoryPattern.Repositories;
 using DataAccessPatterns.UnitOfWorkPattern;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using RepositoryPattern.Repositories;
-using Shared.DataAccess;
 using Shared.Domain.Models;
 using ShopingApp.Web.Controllers;
 using ShoppingApp.Web.Models;

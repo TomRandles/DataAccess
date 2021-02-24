@@ -2,7 +2,7 @@
 using Shared.Domain.Models;
 using System.Linq;
 
-namespace RepositoryPattern.Repositories
+namespace DataAccessPatterns.RepositoryPattern.Repositories
 {
     public class CustomerRepository : GenericRepository<Customer>
     { 

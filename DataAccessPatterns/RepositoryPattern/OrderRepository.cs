@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace RepositoryPattern.Repositories
+namespace DataAccessPatterns.RepositoryPattern.Repositories
 {
     public class OrderRepository : GenericRepository<Order>
     { 

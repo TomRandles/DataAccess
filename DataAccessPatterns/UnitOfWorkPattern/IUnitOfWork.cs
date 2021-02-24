@@ -1,4 +1,5 @@
-﻿using RepositoryPattern.Repositories;
+﻿
+using DataAccessPatterns.RepositoryPattern.Repositories;
 using Shared.Domain.Models;
 
 namespace DataAccessPatterns.UnitOfWorkPattern

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Linq;
 
-namespace RepositoryPattern.Repositories
+namespace DataAccessPatterns.RepositoryPattern.Repositories
 {
     public abstract class GenericRepository<T> : IRepository<T> where T: class
     {

@@ -1,6 +1,6 @@
 ﻿using System;
+using DataAccessPatterns.RepositoryPattern.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using RepositoryPattern.Repositories;
 using Shared.Domain.Models;
 
 namespace ShopingApp.Web.Controllers

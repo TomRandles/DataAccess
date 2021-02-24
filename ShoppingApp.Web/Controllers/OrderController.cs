@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Linq;
 using DataAccessPatterns.UnitOfWorkPattern;
 using Microsoft.AspNetCore.Mvc;
-using RepositoryPattern.Repositories;
 using Shared.Domain.Models;
 using ShoppingApp.Web.Models;
 
