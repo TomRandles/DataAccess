@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{CF0F822C-B97C-4292-AD08-DDDA2F11AF5A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryPattern", "RepositoryPattern\RepositoryPattern.csproj", "{E6D84783-9765-4A2E-9321-2A16C582A50C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessPatterns", "RepositoryPattern\DataAccessPatterns.csproj", "{E6D84783-9765-4A2E-9321-2A16C582A50C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp.Web", "ShoppingApp.Web\ShoppingApp.Web.csproj", "{8FB677A4-F34E-4077-9F08-8729F42F10A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingApp.Web.Tests", "ShoppingApp.Web.Tests\ShoppingApp.Web.Tests.csproj", "{B5E57A7D-51B8-417D-A6E4-B7371BAC08C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp.Web.Tests", "ShoppingApp.Web.Tests\ShoppingApp.Web.Tests.csproj", "{B5E57A7D-51B8-417D-A6E4-B7371BAC08C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

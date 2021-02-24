@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RepositoryPattern\RepositoryPattern.csproj" />
+    <ProjectReference Include="..\RepositoryPattern\DataAccessPatterns.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 

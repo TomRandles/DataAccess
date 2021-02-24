@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RepositoryPattern\RepositoryPattern.csproj" />
+    <ProjectReference Include="..\RepositoryPattern\DataAccessPatterns.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <ProjectReference Include="..\ShoppingApp.Web\ShoppingApp.Web.csproj" />
   </ItemGroup>

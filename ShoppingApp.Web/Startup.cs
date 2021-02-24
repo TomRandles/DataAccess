@@ -1,3 +1,4 @@
+using DataAccessPatterns.UnitOfWorkPattern;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -36,10 +37,12 @@ namespace ShoppingApp.Web
 
             CreateInitialDatabase(context);
 
-            services.TryAddTransient<IRepository<Customer>, CustomerRepository>();
-            services.TryAddTransient<IRepository<Product>, ProductRepository>();
-            services.TryAddTransient<IRepository<Order>, OrderRepository >();
+            //services.TryAddTransient<IRepository<Customer>, CustomerRepository>();
+            //services.TryAddTransient<IRepository<Product>, ProductRepository>();
+            //services.TryAddTransient<IRepository<Order>, OrderRepository >();
 
+            services.TryAddTransient<IUnitOfWork, UnitOfWork>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

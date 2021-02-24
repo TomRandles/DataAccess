@@ -1,28 +1,27 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using DataAccessPatterns.UnitOfWorkPattern;
 using Microsoft.AspNetCore.Mvc;
 using RepositoryPattern.Repositories;
-using Shared.DataAccess;
 using Shared.Domain.Models;
 using ShoppingApp.Web.Models;
 
 namespace ShopingApp.Web.Controllers
 {
     public class OrderController : Controller
-    {
-        private readonly IRepository<Order> _orderRepository;
+    {       
+        // Employs UnitOfWork pattern - needs multiple repositories
+        private readonly IUnitOfWork _unitOfWork;
 
-        private readonly IRepository<Product> _productRepository;
-        public OrderController(IRepository<Order> orderRepository, IRepository<Product> productRepository)
+        public OrderController(IUnitOfWork unitOfWork)
         {
-            _orderRepository = orderRepository;
-            _productRepository = productRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            var orders = _orderRepository.Find(order => order.OrderDate > DateTime.UtcNow.AddDays(-1));
+            var orders = _unitOfWork.OrderRepository.Find(order => order.OrderDate > DateTime.UtcNow.AddDays(-1));
 
             //var orders = context.Orders
             //    .Include(order => order.LineItems)
@@ -33,7 +32,7 @@ namespace ShopingApp.Web.Controllers
 
         public IActionResult Create()
         {
-            var products = _productRepository.All();
+            var products = _unitOfWork.ProductRepository.All();
             // var products = context.Products.ToList();
 
             return View(products);
@@ -46,14 +45,33 @@ namespace ShopingApp.Web.Controllers
 
             if (string.IsNullOrWhiteSpace(model.Customer.Name)) return BadRequest("Customer needs a name");
 
-            var customer = new Customer
+            // Does customer exist already?
+            // Customer checking based on name
+            var customer = _unitOfWork.CustomerRepository.Find(c => c.Name == model.Customer.Name)
+                                                         .FirstOrDefault();
+            if (customer != null)
             {
-                Name = model.Customer.Name,
-                ShippingAddress = model.Customer.ShippingAddress,
-                City = model.Customer.City,
-                PostalCode = model.Customer.PostalCode,
-                Country = model.Customer.Country
-            };
+                // exists already, update fields with latest info
+                customer.ShippingAddress = model.Customer.ShippingAddress;
+                customer.City = model.Customer.City;
+                customer.PostalCode = model.Customer.PostalCode;
+                customer.Country = model.Customer.Country;
+
+                _unitOfWork.CustomerRepository.Update(customer);
+                // Only one SaveChanges required with UnitOfWork
+                //_unitOfWork.CustomerRepository.SaveChanges();
+            }
+            else
+            {
+                customer = new Customer
+                {
+                    Name = model.Customer.Name,
+                    ShippingAddress = model.Customer.ShippingAddress,
+                    City = model.Customer.City,
+                    PostalCode = model.Customer.PostalCode,
+                    Country = model.Customer.Country
+                };
+            }
 
             var order = new Order
             {
@@ -64,8 +82,8 @@ namespace ShopingApp.Web.Controllers
                 Customer = customer
             };
 
-            _orderRepository.Add(order);
-            _orderRepository.SaveChanges();
+            _unitOfWork.OrderRepository.Add(order);
+            _unitOfWork.SaveChanges();
 
             // context.Orders.Add(order);
             // context.SaveChanges();
