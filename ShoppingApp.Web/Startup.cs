@@ -6,10 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using RepositoryPattern.Repositories;
 using Shared.DataAccess;
 using Shared.Domain.Models;
-using System;
 
 namespace ShoppingApp.Web
 {
@@ -28,7 +26,6 @@ namespace ShoppingApp.Web
 
             services.AddControllersWithViews();
 
-            // services.AddTransient<ShoppingDb>();
             services.AddDbContext<ShoppingDb>(options => options.UseSqlServer(@"Data Source=(localdb)\mssqllocaldb;Initial Catalog=ShoppingApp.ShoppingDb;Integrated Security=True"));
 
             var serviceProvider = services.BuildServiceProvider();

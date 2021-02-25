@@ -25,5 +25,18 @@ namespace Shared.DataAccess
             //.UseSqlite("Data Source=orders.db");
             // Data Source=(localdb)\mssqllocaldb;Initial Catalog=ShoppingApp.ShoppingDb;Integrated Security=True
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+
+            // Ignore picture property in the Db build
+            // Avoid loading unnecessary data that can lead to large memory footprints in the app.
+            builder.Entity<Customer>()
+                   .Ignore(c => c.ProfilePicture);
+
+                   // .Ignore(c => c.ProfilePictureValueHolder);
+
+            base.OnModelCreating(builder);
+        }
     }
 }
